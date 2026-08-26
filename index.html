@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Carlos Daniel — Desenvolvedor Front-End | Hamashdan</title>
+<meta name="description" content="Carlos Daniel (Hamashdan) — desenvolvedor front-end freelancer. Landing pages, sites institucionais e interfaces UI/UX que carregam rápido e convertem." />
+<meta name="keywords" content="Carlos Daniel, hamashdan, desenvolvedor web, freelancer, landing page, front-end, UI UX, orçamento site" />
+<meta name="author" content="Carlos Daniel" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Carlos Daniel — Desenvolvedor Front-End | Hamashdan" />
+<meta property="og:description" content="Landing pages, sites institucionais e interfaces UI/UX que carregam rápido e convertem. Solicite um orçamento." />
+<meta property="og:url" content="https://www.hamashdan.com.br/" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root{
+    --bg: #0a0a10;
+    --bg-soft: #101019;
+    --card: #14131d;
+    --line: #26232f;
+    --accent: #7c5cff;
+    --accent-soft: rgba(124,92,255,.14);
+    --cyan: #45d9c9;
+    --text: #f1eff8;
+    --muted: #918da3;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display{ font-family: 'Space Grotesk', 'Inter', sans-serif; letter-spacing: -0.02em; }
+  .mono{ font-family: 'JetBrains Mono', monospace; }
+
+  .bg-noise{
+    background-image: radial-gradient(circle at 15% 10%, rgba(124,92,255,.16), transparent 40%),
+                       radial-gradient(circle at 85% 0%, rgba(69,217,201,.10), transparent 35%);
+  }
+
+  .eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .78rem;
+    color: var(--cyan);
+    letter-spacing: .02em;
+  }
+  .eyebrow::before{ content: "// "; color: var(--muted); }
+
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+    background-color: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .card:hover{ border-color: rgba(124,92,255,.5); }
+
+  .btn-primary{
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    box-shadow: 0 0 0 rgba(124,92,255,0);
+  }
+  .btn-primary:hover{ background:#6c4cf0; box-shadow: 0 8px 24px -8px rgba(124,92,255,.6); transform: translateY(-1px); }
+
+  .btn-ghost{
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: 10px;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .btn-ghost:hover{ border-color: var(--accent); transform: translateY(-1px); }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+  }
+
+  .tag{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: .15rem .65rem;
+    white-space: nowrap;
+  }
+
+  /* browser mockup */
+  .browser{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.6);
+  }
+  .browser-bar{
+    background: #0e0d15;
+    border-bottom: 1px solid var(--line);
+    padding: .55rem .75rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .dot{ width:9px; height:9px; border-radius:50%; }
+  .browser-url{
+    font-family:'JetBrains Mono', monospace;
+    font-size: .68rem;
+    color: var(--muted);
+    background: #17151f;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: .15rem .6rem;
+    margin-left: .5rem;
+  }
+  .browser-body{ padding: 1.1rem 1.1rem 1.3rem; min-height: 250px; }
+
+  #codeType{ white-space: pre-wrap; font-family:'JetBrains Mono', monospace; font-size:.82rem; line-height:1.6; }
+  .tok-kw{ color:#c792ea; } .tok-tag{ color:#7fdbca; } .tok-str{ color:#ffcb8b; } .tok-fn{ color:#82aaff; } .tok-cmt{ color:#5c5871; }
+
+  .preview-fade{ animation: fadeIn .5s ease both; }
+  @keyframes fadeIn{ from{opacity:0; transform: translateY(6px);} to{opacity:1; transform: translateY(0);} }
+
+  .timeline-line{ background: linear-gradient(90deg, var(--line), var(--line)); height: 2px;}
+  .timeline-line::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--accent), var(--line));
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: timelineProgress 15s infinite;
+}
+  .step-dot{ width:34px; height:34px; border-radius:50%; border:1px solid var(--accent); display:flex; align-items:center; justify-content:center; background: var(--bg); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .preview-fade{ animation: none; }
+  }
+
+  .cursor-blink{ animation: blink 1s step-end infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+  @keyframes timelineProgress {
+    to {
+        transform: scaleX(1);
+    }
+}
+</style>
+</head>
+
+<body class="bg-noise">
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50 border-b border-[var(--line)] bg-[#0a0a10]/80 backdrop-blur">
+  <nav class="max-w-6xl mx-auto px-5 md:px-10 h-16 flex items-center justify-between">
+    <a href="#top" class="display font-bold text-lg">Hamashdan<span style="color:var(--accent)">_</span></a>
+    <div class="hidden md:flex items-center gap-8 mono text-sm text-[var(--muted)]">
+      <a href="#servicos" class="hover:text-white transition">serviços</a>
+      <a href="#processo" class="hover:text-white transition">processo</a>
+      <a href="#portfolio" class="hover:text-white transition">portfólio</a>
+      <a href="#stack" class="hover:text-white transition">stack</a>
+    </div>
+    <a href="#contato" class="btn-primary text-sm px-4 py-2 hidden sm:inline-block">Solicitar orçamento</a>
+    <button id="menuBtn" aria-label="Abrir menu" class="md:hidden text-white">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </nav>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-[var(--line)] px-5 py-4 flex flex-col gap-4 mono text-sm text-[var(--muted)]">
+    <a href="#servicos">serviços</a>
+    <a href="#processo">processo</a>
+    <a href="#portfolio">portfólio</a>
+    <a href="#stack">stack</a>
+    <a href="#contato" class="btn-primary text-center py-2 text-white">Solicitar orçamento</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="max-w-6xl mx-auto px-5 md:px-10 pt-32 pb-20 md:pt-44 md:pb-28 grid md:grid-cols-2 gap-12 items-center">
+  <div>
+    <p class="eyebrow mb-4">desenvolvedor front-end freelancer</p>
+    <h1 class="text-[2.4rem] leading-[1.08] md:text-[3.2rem] font-bold mb-6">
+      Sites que carregam rápido, <span style="color:var(--accent)">convertem</span> e representam sua marca.
+    </h1>
+    <p class="text-[var(--muted)] text-base md:text-lg mb-8 max-w-md">
+      Sou o Carlos Daniel. Transformo briefing em landing pages e sites institucionais rápidos, responsivos e prontos para gerar clientes, do wireframe ao deploy.
+    </p>
+    <div class="flex flex-wrap gap-4 mb-10">
+      <a href="#contato" class="btn-primary px-6 py-3">Pedir orçamento</a>
+      <a href="#portfolio" class="btn-ghost px-6 py-3">Ver portfólio</a>
+    </div>
+    <div class="flex items-center gap-6 mono text-xs text-[var(--muted)]">
+      <span>Petrópolis, RJ</span>
+      <span class="w-1 h-1 rounded-full bg-[var(--line)]"></span>
+      <span>Disponível para novos projetos</span>
+    </div>
+  </div>
+
+  <!-- browser mockup / signature element -->
+  <div class="browser">
+    <div class="browser-bar">
+      <span class="dot" style="background:#ff5f57"></span>
+      <span class="dot" style="background:#febc2e"></span>
+      <span class="dot" style="background:#28c840"></span>
+      <span class="browser-url">seusite.com.br</span>
+    </div>
+    <div class="browser-body">
+      <div id="codeType" class="mono"></div>
+      <div id="previewBox" class="hidden preview-fade">
+        <p class="eyebrow mb-2">sua marca</p>
+        <h3 class="display text-xl font-bold mb-2">Sua landing page, no ar.</h3>
+        <p class="text-sm text-[var(--muted)] mb-4">Rápida, responsiva e feita para converter visitantes em clientes.</p>
+        <div class="flex gap-2">
+          <span class="btn-primary text-xs px-3 py-1.5 inline-block">Fale comigo</span>
+          <span class="btn-ghost text-xs px-3 py-1.5 inline-block">Ver mais</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos" class="max-w-6xl mx-auto px-5 md:px-10 py-20 md:py-28 border-t border-[var(--line)]">
+  <p class="eyebrow mb-3">o que eu entrego</p>
+  <h2 class="text-3xl md:text-[2.4rem] font-bold mb-4">Serviços</h2>
+  <p class="text-[var(--muted)] max-w-xl mb-12">Do primeiro rascunho ao site publicado, cada entrega inclui código limpo, responsivo e pensado para conversão.</p>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="card p-6">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4"><path d="M7 8L3 11.6923L7 16M17 8L21 11.6923L17 16M14 4L10 20"/></svg>
+      <h3 class="font-bold text-lg mb-2">Landing Pages</h3>
+      <p class="text-sm text-[var(--muted)] mb-4">Páginas de alta conversão para captar leads, vender um curso, produto ou serviço.</p>
+      <ul class="mono text-xs text-[var(--muted)] space-y-1.5">
+        <li>— design orientado a conversão</li>
+        <li>— formulário de contato integrado</li>
+        <li>— otimizada para mobile</li>
+      </ul>
+    </div>
+
+    <div class="card p-6">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+      <h3 class="font-bold text-lg mb-2">Sites Institucionais &amp; Apps</h3>
+      <p class="text-sm text-[var(--muted)] mb-4">Sites completos e aplicações web para apresentar seu negócio ou resolver um processo interno.</p>
+      <ul class="mono text-xs text-[var(--muted)] space-y-1.5">
+        <li>— múltiplas páginas / seções</li>
+        <li>— painéis e funcionalidades sob medida</li>
+        <li>— performance e SEO básico</li>
+      </ul>
+    </div>
+
+    <div class="card p-6">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      <h3 class="font-bold text-lg mb-2">UI/UX &amp; Prototipagem</h3>
+      <p class="text-sm text-[var(--muted)] mb-4">Wireframes e protótipos no Figma antes de qualquer linha de código, para alinhar expectativas.</p>
+      <ul class="mono text-xs text-[var(--muted)] space-y-1.5">
+        <li>— wireframes e fluxo de telas</li>
+        <li>— identidade visual do site</li>
+        <li>— protótipo navegável</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="max-w-6xl mx-auto px-5 md:px-10 py-16 border-t border-[var(--line)]">
+  <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+    <div>
+      <p class="mono text-xs" style="color:var(--cyan)">entrega direta</p>
+      <p class="text-sm text-[var(--muted)] mt-2">Você fala comigo, não com um atendimento — do orçamento ao deploy.</p>
+    </div>
+    <div>
+      <p class="mono text-xs" style="color:var(--cyan)">código sob medida</p>
+      <p class="text-sm text-[var(--muted)] mt-2">Sem templates genéricos: layout e copy pensados para o seu negócio.</p>
+    </div>
+    <div>
+      <p class="mono text-xs" style="color:var(--cyan)">mobile-first</p>
+      <p class="text-sm text-[var(--muted)] mt-2">Toda página é construída e testada primeiro para a tela do celular.</p>
+    </div>
+    <div>
+      <p class="mono text-xs" style="color:var(--cyan)">prazos claros</p>
+      <p class="text-sm text-[var(--muted)] mt-2">Cronograma combinado no início do projeto, sem surpresas no caminho.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo" class="max-w-6xl mx-auto px-5 md:px-10 py-20 md:py-28 border-t border-[var(--line)]">
+  <p class="eyebrow mb-3">como funciona</p>
+  <h2 class="text-3xl md:text-[2.4rem] font-bold mb-14">Processo</h2>
+
+  <div class="grid md:grid-cols-4 gap-8 md:gap-4 relative">
+    <div class="hidden md:block timeline-line absolute top-[17px] left-[2%] right-[12%] h-[3px] bg-gray-200 overflow-hidden">
+    <div class="h-full w-full bg-black origin-left animate-[progress_3s_ease-out_forwards] scale-x-0"></div>
+</div>
+    <div class="relative">
+      <div class="step-dot mono text-sm mb-4 relative z-10" style="background:var(--bg)">01</div>
+      <h3 class="font-bold mb-2">Briefing</h3>
+      <p class="text-sm text-[var(--muted)]">Entendo seu negócio, objetivo do site e referências visuais.</p>
+    </div>
+    <div class="relative">
+      <div class="step-dot mono text-sm mb-4 relative z-10" style="background:var(--bg)">02</div>
+      <h3 class="font-bold mb-2">Design</h3>
+      <p class="text-sm text-[var(--muted)]">Wireframe e protótipo visual para aprovação antes de programar.</p>
+    </div>
+    <div class="relative">
+      <div class="step-dot mono text-sm mb-4 relative z-10" style="background:var(--bg)">03</div>
+      <h3 class="font-bold mb-2">Desenvolvimento</h3>
+      <p class="text-sm text-[var(--muted)]">Codifico o site, responsivo e testado em diferentes dispositivos.</p>
+    </div>
+    <div class="relative">
+      <div class="step-dot mono text-sm mb-4 relative z-10" style="background:var(--bg)">04</div>
+      <h3 class="font-bold mb-2">Entrega</h3>
+      <p class="text-sm text-[var(--muted)]">Publicação, ajustes finais e repasse de acesso ao código.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="max-w-6xl mx-auto px-5 md:px-10 py-20 md:py-28 border-t border-[var(--line)]">
+  <p class="eyebrow mb-3">trabalhos recentes</p>
+  <h2 class="text-3xl md:text-[2.4rem] font-bold mb-12">Portfólio</h2>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="card p-5 flex flex-col justify-between">
+      <div>
+        <h3 class="font-bold mb-2">Corretora de imóveis</h3>
+        <p class="text-sm text-[var(--muted)] mb-4">Página institucional para corretora de imóveis com paginação, catalogo dinamico, filtros e pesquisa.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="tag">JS</span><span class="tag">CSS</span><span class="tag">HTML</span>
+        </div>
+      </div>
+      <div class="flex gap-2 mono text-xs">
+        <a href="https://danhamash.github.io/corretora-de-imoveis/" target="_blank" class="btn-primary px-3 py-1.5">Projeto</a>
+        <a href="https://github.com/danHamash/corretora-de-imoveis" target="_blank" class="btn-ghost px-3 py-1.5">Código</a>
+      </div>
+    </div>
+
+    <div class="card p-5 flex flex-col justify-between">
+      <div>
+        <h3 class="font-bold mb-2">Pagina de vendas</h3>
+        <p class="text-sm text-[var(--muted)] mb-4">Site para venda de quadrinhos com foco em coonversão.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="tag">JS</span><span class="tag">CSS</span><span class="tag">HTML</span>
+        </div>
+      </div>
+      <div class="flex gap-2 mono text-xs">
+        <a href="https://batmancomics.shop/" target="_blank" class="btn-primary px-3 py-1.5">Projeto</a>
+        <a href="https://github.com/danHamash/Pagina-de-vendas-para-HK" target="_blank" class="btn-ghost px-3 py-1.5">Código</a>
+      </div>
+    </div>
+
+    <div class="card p-5 flex flex-col justify-between">
+      <div>
+        <h3 class="font-bold mb-2">Landing page simples</h3>
+        <p class="text-sm text-[var(--muted)] mb-4">Landing page para anúncio de serviços, vitrine etc.. </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="tag">CSS</span><span class="tag">HTML</span>
+        </div>
+      </div>
+      <div class="flex gap-2 mono text-xs">
+        <a href="https://danhamash.github.io/Dan-Tech/" target="_blank" class="btn-primary px-3 py-1.5">Projeto</a>
+        <a href="https://github.com/danHamash/Dan-Tech" target="_blank" class="btn-ghost px-3 py-1.5">Código</a>
+      </div>
+    </div>
+
+    <div class="card p-5 flex flex-col justify-between">
+      <div>
+        <h3 class="font-bold mb-2">Lista de compras</h3>
+        <p class="text-sm text-[var(--muted)] mb-4">App completo de lista de compras com cálculo e gestão de produtos.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="tag">JS</span><span class="tag">CSS</span><span class="tag">HTML</span>
+        </div>
+      </div>
+      <div class="flex gap-2 mono text-xs">
+        <a href="https://danhamash.github.io/lista-de-compras/" target="_blank" class="btn-primary px-3 py-1.5">Projeto</a>
+        <a href="https://github.com/danHamash/lista-de-compras" target="_blank" class="btn-ghost px-3 py-1.5">Código</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack" class="max-w-6xl mx-auto px-5 md:px-10 py-20 md:py-28 border-t border-[var(--line)]">
+  <p class="eyebrow mb-3">tecnologias</p>
+  <h2 class="text-3xl md:text-[2.4rem] font-bold mb-12">Stack</h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="card p-6">
+      <h3 class="font-bold mb-4" style="color:var(--accent)">Front-End</h3>
+      <div class="flex flex-wrap gap-2">
+        <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
+        <span class="tag">TypeScript</span><span class="tag">Angular</span><span class="tag">Tailwind CSS</span>
+      </div>
+    </div>
+    <div class="card p-6">
+      <h3 class="font-bold mb-4" style="color:var(--accent)">Design UI/UX</h3>
+      <div class="flex flex-wrap gap-2">
+        <span class="tag">Figma</span><span class="tag">Photoshop</span><span class="tag">Wireframe</span>
+        <span class="tag">Prototipagem</span>
+      </div>
+    </div>
+    <div class="card p-6">
+      <h3 class="font-bold mb-4" style="color:var(--accent)">Ferramentas</h3>
+      <div class="flex flex-wrap gap-2">
+        <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Node</span><span class="tag">VS Code</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="max-w-6xl mx-auto px-5 md:px-10 py-20 md:py-28 border-t border-[var(--line)]">
+  <div class="grid md:grid-cols-2 gap-12">
+    <div>
+      <p class="eyebrow mb-3">vamos conversar</p>
+      <h2 class="text-3xl md:text-[2.4rem] font-bold mb-4">Solicite um orçamento</h2>
+      <p class="text-[var(--muted)] mb-10 max-w-sm">Conte um pouco sobre o seu projeto, respondo com uma proposta e prazo estimado.</p>
+
+      <div class="space-y-5">
+        <div class="flex items-start gap-3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <div>
+            <p class="font-semibold text-sm">E-mail</p>
+            <p class="text-sm text-[var(--muted)]">carlos30daniel@hotmail.com</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div>
+            <p class="font-semibold text-sm">Telefone</p>
+            <p class="text-sm text-[var(--muted)]">(24) 98827-5420</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <p class="font-semibold text-sm">Localização</p>
+            <p class="text-sm text-[var(--muted)]">Petrópolis, Rio de Janeiro</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          <div>
+            <p class="font-semibold text-sm">GitHub</p>
+            <a href="https://github.com/danHamash" target="_blank" class="text-sm text-[var(--muted)] hover:text-white">github.com/danHamash</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card p-6 md:p-8">
+      <form class="flex flex-col gap-4" action="https://formspree.io/f/xqalzllq" method="POST">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-semibold" for="nome">Nome</label>
+            <input id="nome" class="bg-[#0e0d15] border border-[var(--line)] rounded-lg h-11 px-3 text-sm" type="text" name="nome" placeholder="Seu nome" minlength="3" required>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-semibold" for="email">E-mail</label>
+            <input id="email" class="bg-[#0e0d15] border border-[var(--line)] rounded-lg h-11 px-3 text-sm" type="email" name="email" placeholder="seu@email.com" minlength="8" required>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-semibold" for="assunto">Tipo de projeto</label>
+          <input id="assunto" class="bg-[#0e0d15] border border-[var(--line)] rounded-lg h-11 px-3 text-sm" type="text" name="_subject" placeholder="Ex: landing page, site institucional..." minlength="3" maxlength="60">
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-semibold" for="mensagem">Mensagem</label>
+          <textarea id="mensagem" class="bg-[#0e0d15] border border-[var(--line)] rounded-lg px-3 py-2.5 text-sm h-32" name="message" placeholder="Conte um pouco sobre o seu projeto..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary flex items-center justify-center gap-2 py-3 mt-2">
+          Enviar mensagem
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="border-t border-[var(--line)] py-10">
+  <div class="max-w-6xl mx-auto px-5 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[var(--muted)]">
+    <p>© 2026 Carlos Daniel — Hamashdan. Todos os direitos reservados.</p>
+    <p class="mono text-xs">feito com HTML5 &amp; Tailwind CSS</p>
+  </div>
+</footer>
+
+<script>
+  // menu mobile
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+  // typing animation no browser mockup do hero
+  const codeLines = [
+    { text: '<span class="tok-tag">&lt;section</span> <span class="tok-fn">class</span>=<span class="tok-str">"hero"</span><span class="tok-tag">&gt;</span>' },
+    { text: '  <span class="tok-tag">&lt;h1&gt;</span>Sua marca, no ar.<span class="tok-tag">&lt;/h1&gt;</span>' },
+    { text: '  <span class="tok-cmt">// pronto para captar clientes</span>' },
+    { text: '  <span class="tok-kw">function</span> <span class="tok-fn">publicar</span>() {' },
+    { text: '    <span class="tok-kw">return</span> <span class="tok-str">"site no ar"</span>;' },
+    { text: '  }' },
+    { text: '<span class="tok-tag">&lt;/section&gt;</span>' }
+  ];
+
+  const codeEl = document.getElementById('codeType');
+  const previewEl = document.getElementById('previewBox');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function runTyping(){
+    if(reduceMotion){
+      codeEl.classList.add('hidden');
+      previewEl.classList.remove('hidden');
+      return;
+    }
+    codeEl.innerHTML = '';
+    previewEl.classList.add('hidden');
+    let li = 0;
+
+    function typeLine(){
+      if(li >= codeLines.length){
+        setTimeout(() => {
+          codeEl.classList.add('hidden');
+          previewEl.classList.remove('hidden');
+          setTimeout(() => {
+            previewEl.classList.add('hidden');
+            codeEl.classList.remove('hidden');
+            runTyping();
+          }, 3200);
+        }, 500);
+        return;
+      }
+      const lineHTML = codeLines[li].text;
+      const span = document.createElement('div');
+      span.innerHTML = lineHTML;
+      codeEl.appendChild(span);
+      li++;
+      setTimeout(typeLine, 260);
+    }
+    typeLine();
+  }
+  runTyping();
+</script>
+
+</body>
+</html>
